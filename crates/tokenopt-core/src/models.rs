@@ -117,7 +117,7 @@ impl ModelCapabilities {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum ModelFeature {
     FunctionCalling,
     Vision,
@@ -188,6 +188,27 @@ impl ModelRegistry {
             family: "gpt-4o".to_string(),
             is_fast_variant: true,
             knowledge_cutoff: Some("2024-10".to_string()),
+        });
+
+        self.register(ModelCapabilities {
+            id: "gpt-4".to_string(),
+            name: "GPT-4".to_string(),
+            provider: "openai".to_string(),
+            context_window: 128_000,
+            max_output_tokens: 4_096,
+            pricing: Some(ModelPricing::new(10.00, 30.00)),
+            features: ModelFeatures {
+                function_calling: true,
+                vision: true,
+                json_mode: true,
+                parallel_tool_calls: true,
+                streaming: true,
+                system_prompt: true,
+                logprobs: true,
+            },
+            family: "gpt-4".to_string(),
+            is_fast_variant: false,
+            knowledge_cutoff: Some("2023-12".to_string()),
         });
 
         self.register(ModelCapabilities {
@@ -476,7 +497,8 @@ mod tests {
         let gpt4o_mini = registry.get("gpt-4o-mini").unwrap();
         
         assert_eq!(gpt4o_mini.pricing_tier(), PricingTier::Cheap);
-        assert_eq!(gpt4o.pricing_tier(), PricingTier::Standard);
+        // gpt-4o avg cost = (2.50 + 10.00) / 2 = 6.25 => Premium
+        assert_eq!(gpt4o.pricing_tier(), PricingTier::Premium);
     }
 
     #[test]

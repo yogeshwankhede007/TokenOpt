@@ -43,6 +43,7 @@ impl Default for TokenCounterConfig {
         aliases.insert("gpt-3.5-turbo".to_string(), "gpt-3.5-turbo".to_string());
         aliases.insert("gpt-4o".to_string(), "gpt-4o".to_string());
         aliases.insert("gpt-4o-mini".to_string(), "gpt-4o-mini".to_string());
+        aliases.insert("default".to_string(), "gpt-4".to_string());
         // Anthropic models (use cl100k_base as approximation)
         aliases.insert("claude-3-opus".to_string(), "gpt-4".to_string());
         aliases.insert("claude-3-sonnet".to_string(), "gpt-4".to_string());
@@ -77,7 +78,7 @@ pub struct TokenCount {
 }
 
 /// Message role in a conversation
-#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
 pub enum Role {
     System,
     User,

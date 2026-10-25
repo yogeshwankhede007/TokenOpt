@@ -1,0 +1,43 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "tokenopt"
+version = "0.1.0"
+description = "Universal Token Optimization for LLM Coding Assistants - Python bindings"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "TokenOpt Contributors"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+]
+keywords = ["token", "optimization", "llm", "claude", "copilot", "ai"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "maturin>=1.0",
+]
+
+[tool.maturin]
+features = ["python"]
+compatibility = "abi3"
+bindings = "pyo3"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

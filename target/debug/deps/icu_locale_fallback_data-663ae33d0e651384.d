@@ -1,0 +1,8 @@
+/Users/yog/Documents/opencodeprojects/tokenoptimization/target/debug/deps/icu_locale_fallback_data-663ae33d0e651384.d: /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/lib.rs /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/mod.rs /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_likely_subtags_language_v1.rs.data /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_parents_v1.rs.data
+
+/Users/yog/Documents/opencodeprojects/tokenoptimization/target/debug/deps/libicu_locale_fallback_data-663ae33d0e651384.rmeta: /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/lib.rs /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/mod.rs /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_likely_subtags_language_v1.rs.data /Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_parents_v1.rs.data
+
+/Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/lib.rs:
+/Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/mod.rs:
+/Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_likely_subtags_language_v1.rs.data:
+/Users/yog/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_locale_fallback_data-2.4.0/src/../data/locale_parents_v1.rs.data:

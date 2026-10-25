@@ -12,21 +12,24 @@ pub mod prompt;
 pub mod router;
 pub mod summarizer;
 
+#[cfg(feature = "napi")]
+pub mod napi;
+
 pub use cache::{CacheConfig, TokenCache};
 pub use context::{ContextSelector, SelectionStrategy, SelectedContext};
-pub use counter::{TokenCounter, TokenCounterConfig};
-pub use models::{ModelCapabilities, ModelRegistry, PricingTier};
-pub use optimizer::{OptimizationConfig, OptimizationResult, TokenOptimizer};
-pub use prompt::{PromptOptimizer, PromptTemplate, OptimizedPrompt};
-pub use router::{ModelRouter, RoutingDecision, RoutingStrategy, TaskComplexity};
-pub use summarizer::{SummaryConfig, SummaryStrategy, ConversationSummarizer};
+pub use counter::{TokenCounter, TokenCounterConfig, Message, Role, ToolCall, FunctionCall, TokenCount};
+pub use models::{ModelCapabilities, ModelRegistry, ModelPricing, ModelFeatures, PricingTier, ModelFeature};
+pub use optimizer::{OptimizationConfig, OptimizationResult, TokenOptimizer, AppliedStrategy, OptimizationMetadata};
+pub use prompt::{PromptOptimizer, PromptTemplate, OptimizedPrompt, PromptOptimizationConfig, AggressivenessLevel, CustomRule, PromptTask, OptimizationTechnique, TemplateMetadata};
+pub use router::{ModelRouter, RoutingDecision, RoutingStrategy, TaskComplexity, RoutingRule, RoutingCondition, RoutingAction};
+pub use summarizer::{SummaryConfig, SummaryStrategy, ConversationSummarizer, SummaryResult, KeyPoint, KeyPointCategory, SummaryMetadata, RollingSummary};
 
 /// Re-export commonly used types
 pub mod prelude {
     pub use crate::cache::{CacheConfig, TokenCache};
     pub use crate::context::{ContextSelector, SelectionStrategy, SelectedContext};
-    pub use crate::counter::{TokenCounter, TokenCounterConfig};
-    pub use crate::models::{ModelCapabilities, ModelRegistry, PricingTier};
+    pub use crate::counter::{TokenCounter, TokenCounterConfig, Message, Role, TokenCount};
+    pub use crate::models::{ModelCapabilities, ModelRegistry, ModelPricing, PricingTier, ModelFeature};
     pub use crate::optimizer::{OptimizationConfig, OptimizationResult, TokenOptimizer};
     pub use crate::prompt::{PromptOptimizer, PromptTemplate, OptimizedPrompt};
     pub use crate::router::{ModelRouter, RoutingDecision, RoutingStrategy, TaskComplexity};
@@ -34,13 +37,6 @@ pub mod prelude {
     pub use crate::{TokenOpt, TokenOptBuilder};
 }
 
-use crate::counter::TokenCounter;
-use crate::models::ModelRegistry;
-use crate::optimizer::TokenOptimizer;
-use crate::prompt::PromptOptimizer;
-use crate::router::ModelRouter;
-use crate::summarizer::ConversationSummarizer;
-use crate::cache::TokenCache;
 use std::sync::Arc;
 
 /// Main entry point for the TokenOpt library
@@ -76,9 +72,14 @@ impl TokenOpt {
         })
     }
 
-    /// Get the token counter
+    /// Get the token counter (reference)
     pub fn counter(&self) -> &TokenCounter {
         &self.counter
+    }
+
+    /// Get the token counter (Arc clone)
+    pub fn counter_arc(&self) -> Arc<TokenCounter> {
+        self.counter.clone()
     }
 
     /// Get the token optimizer
@@ -106,9 +107,14 @@ impl TokenOpt {
         &self.cache
     }
 
-    /// Get the model registry
+    /// Get the model registry (reference)
     pub fn registry(&self) -> &ModelRegistry {
         &self.registry
+    }
+
+    /// Get the model registry (Arc clone)
+    pub fn registry_arc(&self) -> Arc<ModelRegistry> {
+        self.registry.clone()
     }
 }
 
