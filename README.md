@@ -991,14 +991,7 @@ sequenceDiagram
     CCH-->>RTR: pricing_data
     RTR-->>TO: routing_decision
     
-    TO-->>App: OptimizationResult {
-        optimized_context,
-        tokens_saved,
-        savings_pct,
-        routing_decision,
-        cost_estimate,
-        summary
-    }
+    TO-->>App: OptimizationResult{optimized_context, tokens_saved, savings_pct, routing_decision, cost_estimate, summary}
 ```
 
 ---
@@ -1096,13 +1089,18 @@ flowchart TD
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#00D4AA'}}}%%
-xychart-beta
-    title "TokenOpt vs Naive Token Usage"
-    x-axis ["Code Review", "Doc Gen", "Test Gen", "Refactor", "Debug"]
-    y-axis "Tokens Used" 0 --> 50000
-    bar [12000, 8000, 15000, 10000, 18000]
-    bar [35000, 25000, 40000, 30000, 45000]
-    legend ["With TokenOpt", "Without Optimization"]
+graph LR
+    subgraph "Token Usage Comparison"
+        A[Code Review<br/>12K vs 35K] --> B[Doc Gen<br/>8K vs 25K]
+        B --> C[Test Gen<br/>15K vs 40K]
+        C --> D[Refactor<br/>10K vs 30K]
+        D --> E[Debug<br/>18K vs 45K]
+    end
+    style A fill:#1a1f2e,stroke:#00D4AA
+    style B fill:#1a1f2e,stroke:#00D4AA
+    style C fill:#1a1f2e,stroke:#00D4AA
+    style D fill:#1a1f2e,stroke:#00D4AA
+    style E fill:#1a1f2e,stroke:#00D4AA
 ```
 
 ---
@@ -1187,12 +1185,15 @@ See [SECURITY.md](docs/SECURITY.md) for vulnerability reporting, security measur
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#00D4AA'}}}%%
-timeline
-    title Security Lifecycle
-    2024 Q1 : Dependency Audit\nSBOM Generation
-    2024 Q2 : Penetration Testing\nFuzzing Integration
-    2024 Q3 : Supply Chain Hardening\nSigstore Signing
-    2024 Q4 : Formal Verification\nCritical Path Proofs
+graph LR
+    Q1[2024 Q1<br/>Dependency Audit<br/>SBOM Generation] --> Q2[2024 Q2<br/>Penetration Testing<br/>Fuzzing Integration]
+    Q2 --> Q3[2024 Q3<br/>Supply Chain Hardening<br/>Sigstore Signing]
+    Q3 --> Q4[2024 Q4<br/>Formal Verification<br/>Critical Path Proofs]
+    
+    style Q1 fill:#1a1f2e,stroke:#00D4AA
+    style Q2 fill:#1a1f2e,stroke:#00D4AA
+    style Q3 fill:#1a1f2e,stroke:#00D4AA
+    style Q4 fill:#00D4AA,color:#0a0f1a
 ```
 
 ---
