@@ -1236,9 +1236,6 @@ at your option.
 [![Discord](https://img.shields.io/badge/Discord-Join%20Us-5865F2?style=for-the-badge&logo=discord)](https://discord.gg/tokenopt)
 [![Twitter](https://img.shields.io/badge/Twitter-@TokenOpt-1DA1F2?style=for-the-badge&logo=twitter)](https://twitter.com/TokenOpt)
 
-**Documentation**: [docs.tokenopt.dev](https://docs.tokenopt.dev)  
-**Playground**: [play.tokenopt.dev](https://play.tokenopt.dev)  
-**Benchmarks**: [bench.tokenopt.dev](https://bench.tokenopt.dev)
 
 </div>
 
